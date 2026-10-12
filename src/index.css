@@ -33,6 +33,7 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  overflow-x: hidden;
 }
 
 body {
@@ -40,14 +41,16 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* Scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -70,7 +73,7 @@ body {
   border-bottom: 1px solid var(--border);
   justify-content: space-between;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
   height: 84px;
   padding: 0 5%;
   display: flex;
@@ -79,6 +82,7 @@ body {
   z-index: 50;
   background: oklch(12.5% .008 260 / 0.95);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .brand {
@@ -88,12 +92,14 @@ body {
   display: flex;
   text-decoration: none;
   cursor: pointer;
+  user-select: none;
 }
 
 .brand-mark {
   color: var(--primary);
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
   transition: transform 0.3s ease;
 }
 
@@ -103,7 +109,7 @@ body {
 
 .brand-name {
   font-family: var(--font-display);
-  font-size: 29px;
+  font-size: clamp(22px, 3.5vw, 29px);
   font-weight: 700;
   line-height: 1;
   color: var(--foreground);
@@ -117,14 +123,14 @@ body {
 .brand-sub {
   letter-spacing: 2px;
   color: var(--muted-foreground);
-  margin-top: 5px;
+  margin-top: 4px;
   font-size: 9px;
   font-weight: 600;
 }
 
 .nav-links {
   align-items: center;
-  gap: 34px;
+  gap: clamp(12px, 2.5vw, 34px);
   height: 100%;
   display: flex;
 }
@@ -140,10 +146,11 @@ body {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   cursor: pointer;
-  padding: 0 4px;
+  padding: 0 6px;
   transition: color 0.2s ease;
+  white-space: nowrap;
 }
 
 .nav-item:hover {
@@ -182,6 +189,8 @@ body {
   font-weight: 600;
   letter-spacing: 1.5px;
   display: flex;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .status-dot {
@@ -228,7 +237,7 @@ body {
   width: 90%;
   max-width: 1400px;
   margin: auto;
-  padding: 44px 0;
+  padding: clamp(30px, 6vw, 48px) 0;
   position: relative;
 }
 
@@ -252,8 +261,8 @@ body {
 h1 {
   font-family: var(--font-display);
   letter-spacing: 0;
-  margin: 20px 0 16px;
-  font-size: 76px;
+  margin: clamp(14px, 3vw, 22px) 0 clamp(10px, 2vw, 16px);
+  font-size: clamp(38px, 7vw, 76px);
   font-weight: 700;
   line-height: 0.98;
 }
@@ -265,13 +274,13 @@ h1 span {
 .hero-description {
   color: var(--muted-foreground);
   max-width: 380px;
-  font-size: 13px;
-  line-height: 1.8;
+  font-size: clamp(12px, 1.8vw, 13.5px);
+  line-height: 1.75;
 }
 
 .hero-actions {
   gap: 12px;
-  margin-top: 25px;
+  margin-top: 24px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -284,11 +293,13 @@ h1 span {
   border-radius: 6px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   cursor: pointer;
   text-decoration: none;
   transition: all 0.2s ease;
   font-family: var(--font-sans);
+  touch-action: manipulation;
 }
 
 .hero-cta.primary {
@@ -319,7 +330,7 @@ h1 span {
 .hero-footnote {
   letter-spacing: 1px;
   color: var(--muted-foreground);
-  margin-top: 26px;
+  margin-top: 24px;
   font-size: 9px;
   font-weight: 600;
 }
@@ -334,6 +345,7 @@ h1 span {
   bottom: 37px;
   right: 5%;
   letter-spacing: 1px;
+  transition: transform 0.2s ease;
 }
 
 .hero-index strong {
@@ -356,14 +368,16 @@ h1 span {
 .catalog-heading {
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .catalog-heading h2 {
   font-family: var(--font-display);
   margin: 0;
-  font-size: 29px;
+  font-size: clamp(22px, 3.5vw, 29px);
   line-height: 1;
   letter-spacing: 0.5px;
 }
@@ -382,7 +396,7 @@ h1 span {
 .filters {
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   display: flex;
 }
 
@@ -391,6 +405,7 @@ h1 span {
   border: 1px solid var(--border);
   border-radius: 5px;
   flex: 1;
+  min-width: 180px;
   align-items: center;
   gap: 11px;
   height: 44px;
@@ -432,7 +447,7 @@ h1 span {
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 2px;
+  padding: 4px;
 }
 
 .search-clear-btn:hover {
@@ -445,7 +460,7 @@ h1 span {
   border: 1px solid var(--border);
   border-radius: 5px;
   height: 44px;
-  padding: 0 32px 0 14px;
+  padding: 0 28px 0 14px;
   font-size: 12px;
   font-family: var(--font-sans);
   outline: none;
@@ -453,7 +468,7 @@ h1 span {
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 12px center;
+  background-position: right 10px center;
   transition: border-color 0.2s ease;
 }
 
@@ -468,6 +483,7 @@ h1 span {
   gap: 2px;
   padding: 4px;
   display: flex;
+  flex-shrink: 0;
 }
 
 .view-switch button {
@@ -516,6 +532,7 @@ h1 span {
   gap: 6px;
   transition: all 0.2s ease;
   font-family: var(--font-sans);
+  touch-action: manipulation;
 }
 
 .filter-chip:hover {
@@ -615,8 +632,8 @@ h1 span {
   font-family: var(--font-display);
   letter-spacing: 0.5px;
   position: absolute;
-  top: 13px;
-  left: 14px;
+  top: 12px;
+  left: 12px;
   z-index: 2;
 }
 
@@ -626,8 +643,8 @@ h1 span {
   border: none;
   border-radius: 4px;
   z-index: 3;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   position: absolute;
   top: 10px;
   right: 10px;
@@ -636,6 +653,7 @@ h1 span {
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
+  touch-action: manipulation;
 }
 
 .save-button:hover {
@@ -664,7 +682,7 @@ h1 span {
   color: var(--foreground);
   cursor: pointer;
   padding: 0;
-  font-size: 25px;
+  font-size: clamp(20px, 2.5vw, 25px);
   font-weight: 600;
   line-height: 1.1;
   transition: color 0.2s ease;
@@ -687,7 +705,7 @@ h1 span {
   justify-content: space-between;
   align-items: center;
   gap: 6px;
-  padding-top: 13px;
+  padding-top: 12px;
   margin-top: auto;
   display: flex;
 }
@@ -701,8 +719,8 @@ h1 span {
 
 .bounty-value {
   font-family: var(--font-display);
-  margin-top: 4px;
-  font-size: 17px;
+  margin-top: 3px;
+  font-size: clamp(14px, 1.8vw, 17px);
   font-weight: 600;
   color: var(--foreground);
   letter-spacing: 0.5px;
@@ -715,6 +733,7 @@ h1 span {
   font-size: 9px;
   font-weight: 500;
   display: flex;
+  white-space: nowrap;
 }
 
 .alive-tag.deceased .status-dot {
@@ -741,7 +760,8 @@ h1 span {
 }
 
 .character-grid.list-view .portrait-button {
-  height: 175px;
+  height: 100%;
+  min-height: 165px;
 }
 
 /* =========================================================================
@@ -771,6 +791,7 @@ h1 span {
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: var(--font-sans);
+  touch-action: manipulation;
 }
 
 .load-more-btn:hover {
@@ -787,7 +808,7 @@ h1 span {
 .empty-state {
   text-align: center;
   color: var(--muted-foreground);
-  padding: 70px 10px;
+  padding: 60px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -810,11 +831,13 @@ h1 span {
   z-index: 100;
   background: oklch(6% .005 260 / 0.85);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 16px;
   animation: fadeIn 0.2s ease;
+  overflow-y: auto;
 }
 
 @keyframes fadeIn {
@@ -829,6 +852,7 @@ h1 span {
   max-width: 760px;
   width: 100%;
   max-height: 90vh;
+  max-height: 90dvh;
   padding: 0;
   overflow: hidden auto;
   position: relative;
@@ -843,20 +867,21 @@ h1 span {
 
 .modal-close-btn {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 14px;
+  right: 14px;
   z-index: 10;
   background: var(--overlay);
   border: 1px solid var(--border);
   color: var(--foreground);
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
+  touch-action: manipulation;
 }
 
 .modal-close-btn:hover {
@@ -866,13 +891,13 @@ h1 span {
 }
 
 .detail-layout {
-  grid-template-columns: 45% 55%;
+  grid-template-columns: 44% 56%;
   display: grid;
 }
 
 .detail-image-box {
   position: relative;
-  min-height: 440px;
+  min-height: 420px;
   background: #000;
 }
 
@@ -893,7 +918,7 @@ h1 span {
 }
 
 .detail-content {
-  padding: 38px 30px;
+  padding: 34px 28px;
   display: flex;
   flex-direction: column;
 }
@@ -908,7 +933,7 @@ h1 span {
 
 .detail-title {
   font-family: var(--font-display);
-  font-size: 40px;
+  font-size: clamp(28px, 5vw, 40px);
   font-weight: 700;
   line-height: 1.05;
   margin: 6px 0 4px;
@@ -917,22 +942,23 @@ h1 span {
 .detail-jp-names {
   display: flex;
   align-items: center;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
   color: var(--muted-foreground);
   font-size: 12px;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .detail-stats {
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 16px 20px;
   margin-top: 10px;
   display: grid;
 }
 
 .detail-stats dt {
   color: var(--muted-foreground);
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -963,8 +989,8 @@ h1 span {
 
 .detail-bounty {
   border-top: 1px solid var(--border);
-  margin-top: 26px;
-  padding-top: 20px;
+  margin-top: 24px;
+  padding-top: 18px;
 }
 
 .detail-bounty-header {
@@ -976,7 +1002,7 @@ h1 span {
 .detail-bounty strong {
   font-family: var(--font-display);
   color: var(--primary);
-  font-size: 34px;
+  font-size: clamp(26px, 4.5vw, 34px);
   font-weight: 700;
   display: block;
   margin-top: 4px;
@@ -984,7 +1010,7 @@ h1 span {
 }
 
 .bounty-history-section {
-  margin-top: 16px;
+  margin-top: 14px;
 }
 
 .bounty-history-label {
@@ -1019,8 +1045,9 @@ h1 span {
 }
 
 .modal-actions {
-  margin-top: 24px;
+  margin-top: 22px;
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -1035,10 +1062,12 @@ h1 span {
   color: var(--foreground);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: var(--font-sans);
+  touch-action: manipulation;
 }
 
 .modal-action-btn:hover {
@@ -1083,21 +1112,38 @@ h1 span {
 /* =========================================================================
    RESPONSIVE DESIGN BREAKPOINTS
    ========================================================================= */
-@media (width >= 1500px) {
+
+/* Desktop Large (>= 1400px) */
+@media (min-width: 1400px) {
   .hero {
-    min-height: 490px;
+    min-height: 480px;
   }
   .portrait-button {
-    height: 280px;
+    height: 260px;
   }
 }
 
-@media (width <= 900px) {
+/* Laptop / Desktop Normal (992px - 1399px) */
+@media (max-width: 1200px) {
+  .character-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* Tablet (768px - 991px) */
+@media (max-width: 991px) {
   .header-caption {
     display: none;
   }
   .nav-links {
     gap: 16px;
+  }
+  .hero {
+    min-height: 400px;
+  }
+  .hero-art {
+    object-position: 60% center;
   }
   .character-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1106,130 +1152,309 @@ h1 span {
   .portrait-button {
     height: 210px;
   }
-  h1 {
-    font-size: 66px;
-  }
-  .hero {
-    min-height: 410px;
-  }
-  .hero-art {
-    object-position: 62% center;
-  }
   .character-grid.list-view {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (width <= 600px) {
+/* Large Mobile / Small Tablet (576px - 767px) */
+@media (max-width: 767px) {
   .site-header {
-    gap: 8px;
-    height: 72px;
-    padding: 0 5%;
-  }
-  .brand-name {
-    font-size: 24px;
+    height: 74px;
+    padding: 0 4%;
+    gap: 12px;
   }
   .brand-mark {
-    width: 29px;
+    width: 32px;
+    height: 32px;
   }
   .brand-sub {
-    letter-spacing: 1px;
-    font-size: 7px;
+    display: none;
+  }
+  .nav-links {
+    gap: 10px;
+  }
+  .nav-item {
+    font-size: 12px;
+    padding: 0 4px;
+  }
+  .hero {
+    min-height: 380px;
+  }
+  .hero-art {
+    object-position: 65% center;
+    opacity: 0.7;
+  }
+  .hero-index {
+    display: none;
+  }
+  .character-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .portrait-button {
+    height: 200px;
+  }
+  .character-grid.list-view {
+    grid-template-columns: 1fr;
+  }
+  .character-grid.list-view .character-card {
+    grid-template-columns: 130px 1fr;
+  }
+  .character-grid.list-view .portrait-button {
+    height: 100%;
+    min-height: 150px;
+  }
+  .detail-layout {
+    grid-template-columns: 1fr;
+  }
+  .detail-image-box {
+    height: 280px;
+    min-height: 0;
+  }
+  .detail-content {
+    padding: 24px 20px;
+  }
+  .modal-actions .modal-action-btn {
+    flex: 1;
+  }
+}
+
+/* Mobile Screens (<= 575px) */
+@media (max-width: 575px) {
+  .site-header {
+    height: 66px;
+    padding: 0 4%;
+  }
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+  }
+  .brand-name {
+    font-size: 20px;
   }
   .nav-links {
     gap: 4px;
   }
   .nav-item {
-    padding: 0 8px;
     font-size: 11px;
+    padding: 0 6px;
   }
+  
   .hero {
-    min-height: 400px;
+    min-height: 360px;
   }
   .hero-art {
-    object-position: 67% center;
-    opacity: 0.65;
+    object-position: 68% center;
+    opacity: 0.6;
   }
   .hero-content {
-    padding: 30px 0;
-  }
-  h1 {
-    font-size: 52px;
+    width: 92%;
+    padding: 26px 0;
   }
   .hero-description {
-    max-width: 280px;
+    max-width: 100%;
     font-size: 12px;
   }
-  .hero-index {
-    display: none;
+  .hero-actions {
+    width: 100%;
+    gap: 8px;
   }
-  .catalog-heading h2 {
-    font-size: 24px;
+  .hero-actions .hero-cta {
+    flex: 1;
+    min-width: 140px;
+    height: 40px;
+    font-size: 11.5px;
   }
-  .result-count {
-    font-size: 9px;
+  .hero-footnote {
+    font-size: 8px;
+    margin-top: 18px;
   }
+
+  .catalog {
+    width: 92%;
+    padding: 20px 0 35px;
+  }
+  .catalog-heading {
+    margin-bottom: 14px;
+  }
+  
+  /* Responsive Filters Row on Mobile */
   .filters {
     flex-wrap: wrap;
     gap: 8px;
   }
   .search-field {
     flex-basis: 100%;
+    height: 42px;
   }
   .select-field {
     flex: 1;
     min-width: 0;
-    padding-right: 24px;
+    height: 40px;
+    font-size: 11.5px;
+    padding: 0 24px 0 10px;
   }
-  .character-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+  .view-switch {
+    height: 40px;
+    padding: 3px;
   }
-  .portrait-button {
-    height: 190px;
+  .view-switch button {
+    width: 32px;
+    height: 32px;
   }
-  .card-info {
-    padding: 12px;
-  }
-  .character-name {
-    font-size: 22px;
-  }
-  .bounty-value {
-    font-size: 15px;
-  }
-  .card-stats {
-    flex-wrap: wrap;
-  }
-  .character-grid.list-view {
-    grid-template-columns: 1fr;
-  }
+
+  /* Horizontal Scrolling Filter Chips for Mobile App feel */
   .filter-chips {
     overflow-x: auto;
     flex-wrap: nowrap;
     padding-bottom: 6px;
+    margin-bottom: 18px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .filter-chips::-webkit-scrollbar {
+    display: none;
   }
   .filter-chip {
     flex-shrink: 0;
+    height: 28px;
+    padding: 0 12px;
+    font-size: 10.5px;
   }
+
+  /* Character Grid 2-columns on mobile */
+  .character-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .portrait-button {
+    height: 175px;
+  }
+  .character-number {
+    top: 8px;
+    left: 8px;
+    font-size: 9px;
+    padding: 2px 5px;
+  }
+  .save-button {
+    top: 6px;
+    right: 6px;
+    width: 28px;
+    height: 28px;
+  }
+  .card-info {
+    padding: 10px 8px;
+  }
+  .character-name {
+    font-size: 18px;
+    line-height: 1.15;
+  }
+  .jp-name {
+    font-size: 9px;
+    margin: 3px 0 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-stats {
+    padding-top: 8px;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .bounty-label {
+    font-size: 7.5px;
+  }
+  .bounty-value {
+    font-size: 13.5px;
+  }
+  .alive-tag {
+    font-size: 8.5px;
+  }
+
+  /* List View on Small Mobile */
+  .character-grid.list-view {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .character-grid.list-view .character-card {
+    grid-template-columns: 100px 1fr;
+  }
+  .character-grid.list-view .portrait-button {
+    height: 100%;
+    min-height: 125px;
+  }
+
+  /* Modal on Small Mobile */
+  .modal-backdrop {
+    padding: 10px;
+    align-items: flex-end;
+  }
+  .detail-dialog {
+    max-height: 92dvh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .detail-image-box {
+    height: 230px;
+  }
+  .detail-content {
+    padding: 20px 16px;
+  }
+  .detail-stats {
+    gap: 12px 14px;
+  }
+  .modal-actions {
+    flex-direction: column;
+  }
+  .modal-actions .modal-action-btn {
+    width: 100%;
+    height: 42px;
+  }
+
+  /* Footer on Mobile */
   .site-footer {
     flex-direction: column;
     text-align: center;
-    gap: 8px;
+    gap: 10px;
+    padding: 20px 4%;
   }
-  .detail-dialog {
-    width: 95%;
+  .footer-sub {
+    display: block;
+    margin-left: 0;
+    margin-top: 4px;
   }
-  .detail-layout {
+}
+
+/* Extra Small Screens (<= 360px) */
+@media (max-width: 360px) {
+  .character-grid {
     grid-template-columns: 1fr;
   }
+  .portrait-button {
+    height: 220px;
+  }
+  .select-field {
+    flex-basis: 100%;
+  }
+}
+
+/* Landscape on Mobile devices */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: 320px;
+  }
+  .modal-backdrop {
+    align-items: center;
+    padding: 8px;
+  }
+  .detail-dialog {
+    max-height: 94dvh;
+  }
+  .detail-layout {
+    grid-template-columns: 35% 65%;
+  }
   .detail-image-box {
-    height: 250px;
-    min-height: 0;
-  }
-  .detail-content {
-    padding: 24px 20px;
-  }
-  .detail-title {
-    font-size: 32px;
+    height: 100%;
   }
 }
