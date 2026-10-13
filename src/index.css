@@ -34,6 +34,7 @@ html {
   scroll-behavior: smooth;
   color-scheme: dark;
   overflow-x: hidden;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -838,6 +839,7 @@ h1 span {
   padding: 16px;
   animation: fadeIn 0.2s ease;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 @keyframes fadeIn {
@@ -858,6 +860,7 @@ h1 span {
   position: relative;
   box-shadow: var(--shadow-float);
   animation: scaleUp 0.2s ease;
+  overscroll-behavior: contain;
 }
 
 @keyframes scaleUp {
